@@ -1,0 +1,29 @@
+{
+    "questions": [
+
+        {
+            "id": 1,
+            "question": "What language is spoken in Brazil?",
+            "choises": ["Brazilian", "Spanish", "Portugese"],
+            "correctAnswer": "Portugese"
+        },
+        {
+            "id": 2,
+            "question": "Which drink is Brazil famous for?",
+            "choises": ["Mojito", "Pina Colada", "Caipirinha"],
+            "correctAnswer": "Caipirinha"
+        },
+        {
+            "id": 3,
+            "question": "When is the famous Carnival in Rio de Janeiro?",
+            "choises": ["Febuary", "May", "August"],
+            "correctAnswer": "Febuary"
+        },
+        {
+            "id": 4,
+            "question": "Which is the capital of Brazil?",
+            "choises": ["Sao Paulo", "Brasilia", "Rio de Janeiro"],
+            "correctAnswer": "Brasilia"
+        }
+    ]
+}

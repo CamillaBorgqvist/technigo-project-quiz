@@ -12,57 +12,57 @@ export const QuestionForm = ({userName}) => {
 
     //Saves answer, check if correct and goes to next question
     const handleNext = () => {
-    setUserAnswers([
-      ...userAnswers,
-      {
-        questionId: currentQuestion.id,
-        selected: selectedAnswer,
-        correct: selectedAnswer === currentQuestion.correctAnswer,
-      },
-    ]);
-    setSelectedAnswer("");
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-  };
+      setUserAnswers([
+        ...userAnswers, // copy previous answers, creates new array, adds new answer
+        {
+          questionId: currentQuestion.id,
+          selected: selectedAnswer,
+          correct: selectedAnswer === currentQuestion.correctAnswer,
+        },
+      ]);
+      setSelectedAnswer("");
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    };
 
     //Saves last answer and shows result
     const handleSubmit = () => {
-    setUserAnswers([
-      ...userAnswers, // copy previous answers, creates new array, adds new answer
-      {
-        questionId: currentQuestion.id,
-        selected: selectedAnswer,
-        correct: selectedAnswer === currentQuestion.correctAnswer,
-      },
-    ]);
-    setShowResult(true);
-  };
+      setUserAnswers([
+        ...userAnswers,
+        {
+          questionId: currentQuestion.id,
+          selected: selectedAnswer,
+          correct: selectedAnswer === currentQuestion.correctAnswer,
+        },
+      ]);
+      setShowResult(true);
+    };
 
-  //Counts correct answer
-  const correctCount = userAnswers.filter((a) => a.correct).length;
+    //Counts correct answer
+    const correctCount = userAnswers.filter((a) => a.correct).length;
 
-  if (showResult) {
-    let message ="";
-    if (correctCount === questionList.length) {
-    message = (`Amazing ${userName}! You got all answers correct! 🎉`);
-    } 
-    else if (correctCount >= 2) {
-    message = (`Well done ${userName}! You got ${correctCount} of ${questionList.length} correct answers 👏`);
-    } 
-    else if (correctCount === 1) {
-    message = (`Sorry ${userName}. You only got ${correctCount} of ${questionList.length} correct answers`);
-    } 
-    else {
-    message = (`Sorry ${userName}. You didn't get any correct answers, keep on practicing!`);
+    if (showResult) {
+      let message ="";
+      if (correctCount === questionList.length) {
+      message = (`Amazing ${userName}! You got all answers correct! 🎉`);
+      } 
+      else if (correctCount >= 2) {
+      message = (`Well done ${userName}! You got ${correctCount} of ${questionList.length} correct answers 👏`);
+      } 
+      else if (correctCount === 1) {
+      message = (`Sorry ${userName}. You only got ${correctCount} of ${questionList.length} correct answers`);
+      } 
+      else {
+      message = (`Sorry ${userName}. You didn't get any correct answers, keep on practicing!`);
+      }
+      
+      return (
+        <div className="result-container">
+          <h2>Your Quiz Result</h2>
+          <h4>{message}</h4>
+          <img src="/flag.png" alt="Brazil flag" />
+        </div>
+      );
     }
-    
-    return (
-      <div className="result-container">
-        <h2>Your Quiz Result</h2>
-        <h4>{message}</h4>
-        <img src="/flag.png" alt="Brazil flag" />
-      </div>
-    );
-  }
    
   return (
         
@@ -71,32 +71,32 @@ export const QuestionForm = ({userName}) => {
       <h3>{currentQuestion.question}</h3>
 
       <form className="question-form">
-        {currentQuestionIndex === questionList.length - 1 ? (
+        {currentQuestionIndex === questionList.length - 1 ? ( //if last question
           <select
             value={selectedAnswer}
             onChange={(e) => setSelectedAnswer(e.target.value)}
-          >
+            >
             <option value="">--Choose an answer--</option>
               {currentQuestion.choises.map((choice) => (
-            <option key={choice} value={choice}>
-              {choice}
-            </option>
-            ))}
+                <option key={choice} value={choice}>
+                {choice}
+                </option>
+                ))}
           </select>
-  ) : (
-        currentQuestion.choises.map((choice) => (
-          <label key={choice}>
-            <input
-              type="radio"
-              name="answer"
-              value={choice}
-              checked={selectedAnswer === choice}
-              onChange={(e) => setSelectedAnswer(e.target.value)}
-            />
-              {choice}
-          </label>
-        ))
-  )}  
+        ) : (
+          currentQuestion.choises.map((choice) => (
+            <label key={choice}>
+              <input
+                type="radio"
+                name="answer"
+                value={choice}
+                checked={selectedAnswer === choice}
+                onChange={(e) => setSelectedAnswer(e.target.value)}
+              />
+                {choice}
+            </label>
+          ))
+        )}  
       </form>
 
       <div>

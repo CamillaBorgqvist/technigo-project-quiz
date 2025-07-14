@@ -4,7 +4,7 @@ import { StartScreen } from "./components/StartScreen"
 
 
 export const App = () => {
-  const [quizStarted, setQuizStarted] = useState(false); //if start side or questions are beeing shown
+  const [quizStarted, setQuizStarted] = useState(false); //if startscreen or questionsform are shown
   const [userName, setUserName] = useState(""); //saves username
 
   //runs when user press start, saves name
